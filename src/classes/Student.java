@@ -3,10 +3,10 @@ public class Student{
    public String name;
    public String className;
    public int rank;
-   public Double Grade;
+   public Double grade;
 
    public Double getGrade() {
-      return Grade;
+      return grade;
    }
    public Student(String name , String className){
       this.name = name;
