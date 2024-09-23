@@ -8,4 +8,8 @@ public class Student{
    public Double getGrade() {
       return Grade;
    }
+   public Student(String name , String className){
+      this.name = name;
+      this.className = className;
+   }
 }
