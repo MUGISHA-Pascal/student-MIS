@@ -1,12 +1,13 @@
 import classes.Student;
 import java.util.*;
-
+// ?? fixing sorting , adding grades on inserting
 public class GradeSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Student> students = new ArrayList<>();
+        boolean boolChecker = true;
 
-        while (true) {
+        while (boolChecker) {
             Collections.sort(students, Comparator.comparingDouble(Student::getGrade).reversed());
             int index = 1;
             for (Student student : students) {
@@ -24,6 +25,7 @@ public class GradeSystem {
                 System.out.println("1. add grade to a student");
                 System.out.println("2. check the ranks of students");
                 System.out.println("3. add a new student");
+                System.out.println("4. exit program");
                 System.out.println("Enter the choice (number) :");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
@@ -31,7 +33,7 @@ public class GradeSystem {
                     case 1:
                         System.out.println("Enter the name of the student : ");
                         String name = scanner.nextLine();
-                        for (Student student : students) {
+                       for (Student student : students) {
                             if (name.equalsIgnoreCase(student.name)) {
                                 System.out.println("Enter the grade of the student : ");
                                 int grade = scanner.nextInt();
@@ -51,8 +53,18 @@ public class GradeSystem {
                         name = scanner.nextLine();
                         System.out.println("Enter the class name of the new student : ");
                         String className = scanner.nextLine();
-                        Student newStudent = new Student(name, className);
-                        students.add(newStudent);
+                        System.out.println("Enter the grade of the new student : ");
+                        if (scanner.hasNextDouble()){
+                            double grade = scanner.nextDouble();
+                            Student newStudent = new Student(name, className, grade);
+                            students.add(newStudent);
+                        }else{
+                            Student newStudent = new Student(name, className);
+                            students.add(newStudent);
+                        }
+                        break;
+                    case 4:
+                        boolChecker = false;
                         break;
                     default:
                         System.out.println("Invalid choice");
@@ -64,6 +76,7 @@ public class GradeSystem {
                 System.out.println("The options available :");
                 System.out.println("1. check the rank");
                 System.out.println("2. check schoolmate names and their classes");
+                System.out.println("3. exit the program");
                 System.out.println("Enter your choice(number) : ");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
@@ -82,8 +95,11 @@ public class GradeSystem {
                         int i = 1;
                         for (Student student : students) {
                             System.out.println("index     |     name     |    class     ");
-                            System.out.println(i + student.name + student.className);
+                            System.out.println(i + "      |     " +  student.name + "     |     " + student.className);
                         }
+                        break;
+                    case 3:
+                        boolChecker = false;
                         break;
                     default:
                         System.out.println("Invalid choice");
